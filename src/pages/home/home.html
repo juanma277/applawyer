@@ -1,0 +1,185 @@
+<ion-header>
+<ion-navbar color="primary">
+  	<button ion-button menuToggle icon-only>
+		<ion-icon name="menu"></ion-icon>
+  	</button>
+    <ion-title>
+      Inicio
+    </ion-title>
+
+    <ion-buttons end *ngIf="_up.token">
+
+    		
+    	<button ion-button icon-only
+    			(click)="_cs.verCarrito()">
+			<ion-icon name="cart"></ion-icon>
+			<ion-badge color="danger"
+					   class="carrito-numero"
+					   *ngIf="_ls.items.length > 0">
+					{{_ls.items.length }}
+			</ion-badge>
+
+	  	</button>
+	  	&nbsp;
+	  	&nbsp;
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding> 
+&nbsp;
+&nbsp;
+
+<ng-container *ngIf="_up.token == null"> 
+
+	<ion-card>
+
+			  <ion-item>
+			    <ion-avatar item-start>
+			      <img [src]="'logo.png' | imagenPlan">
+			    </ion-avatar>
+			    <h2>AppLawyer</h2>
+			  </ion-item>
+			
+			  <img [src]="'Court.jpg' | imagenPlan">
+
+			  <ion-card-content>
+			    <p>Tu mejor opción para la administración y gestión de procesos Judiciales. Si ya estas registrado por favor incia sessión desde el menú lateral o registrate y prueba nuestro servicio de manera gratuitua por 15 días.</p>
+			  </ion-card-content>
+
+			  <ion-row>
+			    <ion-col>
+			      <button ion-button icon-left clear small
+			      		  (click)="goToRegistro()">
+			        <ion-icon name="person-add"></ion-icon>
+			        <div>Registrate</div>
+			      </button>
+			    </ion-col>
+			    <ion-col>
+			      <button ion-button icon-left clear small
+			      		  (click)="goToInicio()">
+			        <ion-icon name="power"></ion-icon>
+			        <div>Iniciar Sessión</div>
+			      </button>
+			    </ion-col>
+			  </ion-row>
+
+	</ion-card>
+
+</ng-container>
+
+
+	<ion-fab right bottom *ngIf="_up.token">
+	    <button ion-fab
+	    		[navPush]="crearProceso">
+	    	<ion-icon name="add"></ion-icon>
+	    </button>
+	</ion-fab>
+
+<ng-container *ngIf="_up.token != null">
+	
+	<div padding>
+		<ion-header>
+		  <ion-toolbar>
+		    <ion-segment [(ngModel)]="info">
+		      <ion-segment-button value="misProcesos"
+		      					  (click)="obtenerProcesos()">
+		      	Procesos
+			      	<ion-badge color="secondary"
+						   	   class="notificacion-numero">
+						{{_cpp.cuentaProcesos }}
+					</ion-badge>
+		      </ion-segment-button>
+
+		      <ion-segment-button value="notificaciones"
+		      					  (click)="obtenerNotificaciones()">
+		      	Notificaciones
+		   		<ng-container *ngFor="let activas of _cpp.notificacionesActivas">	
+			      	<ion-badge color="danger"
+						   	   class="notificacion-numero"
+						   	   *ngIf="activas.cuenta > 0">
+						{{activas.cuenta }}
+					</ion-badge>
+				</ng-container>
+		      </ion-segment-button>
+
+		    </ion-segment>
+		  </ion-toolbar>
+		</ion-header>
+	</div>
+
+	&nbsp;
+	&nbsp;
+
+	<div [ngSwitch]="info">
+	  <ion-list *ngSwitchCase="'misProcesos'">
+	    <ion-item>
+	      	
+	      	<ion-searchbar (ionInput)="buscarProceso($event)"></ion-searchbar>
+
+	<ion-card *ngFor="let proceso of _cpp.misProcesos">
+		  <ion-card-content>
+		    <ion-card-title>
+		      <strong>RAD:</strong> {{proceso.radicado}} 
+		      <h2>{{proceso.tipo}}</h2>
+		      <h2>{{proceso.ciudad}}</h2>
+		      </ion-card-title>
+		      	<ion-badge>Demandante</ion-badge>
+			    <ion-badge color="dark">{{proceso.demandante}}</ion-badge> <br>
+			    <ion-badge>Demandado</ion-badge>
+			    <ion-badge color="dark">{{proceso.demandado}}</ion-badge>
+		  </ion-card-content>
+
+		  <ion-row>
+		    <ion-col>
+		    	<ion-badge color="light">{{proceso.juzgado}}</ion-badge>
+		    </ion-col>
+
+		    <ion-col>
+		      	<ion-badge color="light">{{proceso.estadoProceso}}</ion-badge>
+		    </ion-col>
+
+			<button ion-button color="secondary" 
+			      		  	outline
+			      		  	block
+			      		  [navPush]="verHistorial"
+						  [navParams]="{proceso: proceso}">
+			      		VER HISTORIAL
+			</button>
+			 
+
+		  </ion-row>
+		</ion-card>
+
+	    </ion-item>
+	  </ion-list>
+
+	  <ion-list *ngSwitchCase="'notificaciones'">
+		
+		<ng-container *ngIf="_cpp.misNotificaciones">	
+			  <ng-container *ngFor="let notificacion of _cpp.misNotificaciones" >
+					  <ion-item [ngStyle]="{'background-color': notificacion.revisado}">
+
+					    <h2><strong>{{notificacion.radicado}}</strong></h2>
+					    <p><strong>Fecha: </strong>{{notificacion.fecha}}</p>
+					    <p><strong>Actuacion: </strong>{{notificacion.actuacion}}</p>
+					    <p><strong>Anotacion: </strong>{{notificacion.anotacion}}</p>
+					    <button ion-button 
+					    		clear 
+					    		item-end
+					    		[navPush]="verHistorial"
+					    		[navParams]="{proceso: notificacion, notiID:notificacion.notiID, userID:notificacion.userID }"> <ion-icon ios="ios-search" md="md-search"></ion-icon>
+					    </button>
+					  </ion-item>
+			  </ng-container> 
+		</ng-container>
+
+	  </ion-list>
+
+	</div>
+
+</ng-container>
+
+</ion-content>
+

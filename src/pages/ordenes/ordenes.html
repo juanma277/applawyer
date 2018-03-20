@@ -1,0 +1,45 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+  	<button ion-button menuToggle>
+		<ion-icon name="menu"></ion-icon>
+  	</button>
+    <ion-title>Datos de Facturación</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	
+	<ion-list *ngFor="let usuario of _cup.perfilUsuario" inset>
+		 <ion-list-header>
+		    Datos de Usuario
+		 </ion-list-header>
+	  <ion-item><b>Nombres:</b> {{usuario.nombres}} {{usuario.apellidos}}</ion-item>
+	  <ion-item><b>Correo electrónico: </b>{{usuario.email}}</ion-item>
+	  <ion-item><b>Cedula: </b>{{usuario.identificacion}}</ion-item>
+	  <ion-item><b>Dirección: </b>{{usuario.direccion}}</ion-item>
+	  <ion-item><b>Ciudad: </b>{{usuario.nomCiudad}}</ion-item>
+	  <ion-item><b>Teléfono: </b>{{usuario.telefono}}</ion-item>
+
+	  	 <ion-list-header>
+		    Plan Actual
+		 </ion-list-header>
+	  <ion-item><b>Plan de Consulta: </b>{{usuario.nombre}}</ion-item>
+	  <ion-item><b>Procesos Soportados: </b>{{usuario.cantidad}}</ion-item>
+	  <ion-item><b>Procesos Registrados: </b>{{_cup.procesosPorUsuario}}</ion-item>
+	  <ion-item><b>Puedes Registrar: </b>
+	  			<ion-badge color="danger">{{(usuario.cantidad) - (_cup.procesosPorUsuario)}} Procesos</ion-badge>	  				
+	  </ion-item>
+	  
+	  	<button ion-button
+	  			block
+	  			[navPush]="comprarPlanPage"
+				[navParams]="{usuario:usuario}">
+	  		Comprar/Cambiar Plan
+	  	</button>
+
+	</ion-list>
+
+</ion-content>

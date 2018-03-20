@@ -1,0 +1,86 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+
+
+  	<ion-buttons end>
+			<button ion-button
+					icon-only
+					(click)="viewCtrl.dismiss(false)">
+				<ion-icon name="close"></ion-icon>
+			</button>
+	</ion-buttons>
+    <ion-title>Carrito de Compras</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<div text-center
+		
+		*ngIf= "_ls.items.length === 0"
+		class="carrito_vacio">
+		<ion-icon 	name="ios-cart-outline"
+					class="icon-5x"></ion-icon>
+		<br>
+		Su Carrito esta Vacio
+	</div>
+
+	<div *ngIf="_ls.items.length > 0" >
+
+		<ion-grid>
+
+		<ion-row *ngFor="let item of _ls.items; let i = index">
+			<ion-col>
+				<img [src]="item.codigo | imagen" >
+			</ion-col>
+
+			<ion-col>
+				<p>{{item.producto}}</p>
+				<p>{{item.precio_compra | currency}}</p>
+				<button ion-button
+						color="danger"
+						outline
+						block
+						small
+						(click)="_ls.removeItem(i)">
+					Eliminar
+				</button>
+			</ion-col>
+			
+		</ion-row>
+
+		</ion-grid>
+
+
+		<hr>
+		<ion-grid>
+
+			<ion-row>
+
+				<ion-col>
+
+					<h3>
+						<strong>Total:</strong>
+						{{_ls.totalPagar | currency}}
+					</h3>
+					
+				</ion-col>
+				
+			</ion-row>
+			
+		</ion-grid>
+
+		<button ion-button
+				block
+				(click)="_ls.realizarPedido()">
+			Confirmar Pedido
+		</button>
+
+
+		
+	</div>
+
+</ion-content>

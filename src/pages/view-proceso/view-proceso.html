@@ -1,0 +1,34 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+  	<ion-buttons end>
+			<button ion-button
+					icon-only
+					(click)="viewCtrl.dismiss(false)">
+				<ion-icon name="close"></ion-icon>
+			</button>
+	</ion-buttons>
+
+    <ion-title>Notificación - {{radicado}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+	<ion-card>
+	  <ion-card-header>
+	    <strong>Actuación: </strong> {{actuacion}} 
+	  </ion-card-header>
+	  <ion-card-content>
+	  	<p><strong>Demandante: </strong>{{demandante}}</p>
+	  	<p><strong>Demandado: </strong>{{demandado}}</p>
+	    <p><strong>Anotación: </strong></p> <br>
+	    <p>{{anotacion}}</p>
+	  </ion-card-content>
+	</ion-card>
+	
+
+</ion-content>

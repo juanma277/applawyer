@@ -1,0 +1,41 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+  	<button ion-button menuToggle>
+		<ion-icon name="menu"></ion-icon>
+  	</button>
+    <ion-title>Tipos Procesos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-fab right bottom>
+	    <button ion-fab
+	    		[navPush]="crearTipo">
+	    	<ion-icon name="add"></ion-icon>
+	    </button>
+	</ion-fab>
+
+	<ion-searchbar (ionInput)="buscarTipos($event)"></ion-searchbar>
+
+	<ion-list>
+	  <ion-item *ngFor="let tipo of _ctpp.tipos">
+	    <ion-avatar item-start>
+	      <ion-icon name="arrow-forward"></ion-icon>
+	    </ion-avatar>
+	    <h2>{{tipo.nombre}}</h2>
+	    <p>{{tipo.estado}}</p>
+	    <button ion-button 
+					clear 
+					item-right
+					[navPush]="editarTipo"
+					[navParams]="{tipo: tipo}">
+				Ver
+		</button>
+	  </ion-item>
+	</ion-list>
+
+</ion-content>

@@ -1,0 +1,73 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+
+    <ion-title>Editar Proceso - {{proceso.radicado}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-list>
+
+	<ion-item>
+		    <ion-label>Tipo</ion-label>
+		    <ion-select [(ngModel)]="id_tipo_proceso">
+		      <ion-option *ngFor="let tipo of _ctp.tisposProcesosActivos" value="{{tipo.id}}">{{tipo.nombre}}</ion-option>
+		    </ion-select>
+	</ion-item>
+
+	<ion-item>
+		    <ion-label>Ciudad</ion-label>
+		    <ion-select [(ngModel)]="id_ciudad" (ionChange)="onSelectChange($event)">
+		      <ion-option *ngFor="let ciudad of _ccp.ciudadesActivas" value="{{ciudad.id}}">{{ciudad.nombre}}</ion-option>
+		    </ion-select>
+	</ion-item>
+
+	<ion-item>
+		    <ion-label>Juzgado</ion-label>
+		    <ion-select [(ngModel)]="id_juzgado">
+		      <ion-option *ngFor="let juzgado of _cjp.juzgadosActivos" value="{{juzgado.id}}">{{juzgado.nombre}}</ion-option>
+		    </ion-select>
+	</ion-item>
+
+	<ion-item>
+		    <ion-label fixed>Radicado</ion-label>
+		    <ion-input type="text" [(ngModel)]="radicado" value="{{proceso.radicado}}"></ion-input>
+	</ion-item>
+	
+	<ion-item>
+		    <ion-label fixed>Demandante</ion-label>
+		    <ion-input type="text" [(ngModel)]="demandante" value="{{proceso.demandante}}"></ion-input>
+	</ion-item>
+
+	<ion-item>
+	    <ion-label fixed>Demandado</ion-label>
+	    <ion-input type="text" [(ngModel)]="demandado" value="{{proceso.demandado}}"></ion-input>
+	</ion-item>
+
+	<ion-item>
+	  <ion-label>Fecha Radicación</ion-label>
+	  <ion-datetime displayFormat="MMM/DD/YYYY" [(ngModel)]="fecha"></ion-datetime>
+	</ion-item>
+
+	<ion-item>
+	  	<ion-label>Estado</ion-label>
+	  	<ion-toggle checked="true" [(ngModel)]="estado"></ion-toggle>
+	</ion-item>
+
+	    <ion-input type="hidden" [(ngModel)]="id_proceso" value="{{proceso.id_proceso}}"></ion-input>
+
+	<button ion-button
+				block
+				icon-left
+				(click)="actualizarProceso(id_tipo_proceso, id_ciudad, id_juzgado, radicado, demandante, demandado, fecha, estado, id_proceso)">
+			<ion-icon name="refresh-circle"></ion-icon>
+			Actualizar
+		</button>
+
+	</ion-list>
+
+</ion-content>

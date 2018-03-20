@@ -1,0 +1,39 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Procesos Por Tipo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card>
+      <ion-card-header>
+        <strong>Resumen</strong>
+      </ion-card-header>
+      <ion-card-content>
+
+        <ion-item  *ngFor="let proceso of _cpp.procesosPorTipo">
+          {{proceso.tipo}}
+          <ion-badge item-end>{{proceso.cantidad}}</ion-badge>
+        </ion-item>
+        
+      </ion-card-content>
+  </ion-card>
+
+   <div>
+        <div style="display: block">
+          <canvas baseChart height="350"
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [legend]="barChartLegend"
+                  [chartType]="barChartType"
+                  [colors]="chartColors"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+        </div>
+    </div> 
+
+</ion-content>

@@ -1,0 +1,37 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+  	<button ion-button menuToggle>
+		<ion-icon name="menu"></ion-icon>
+  	</button>
+    <ion-title>Planes Disponibles</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-list>
+		<ion-item *ngFor="let plan of planes">
+			<h5><b>{{plan.nombre}}</b></h5>
+			<p>
+				Procesos Soportados: {{plan.cantidad}}
+			</p>
+			<p>
+				Valor: {{plan.valor | currency }}
+			</p>
+
+			<button ion-button round 
+					item-end
+					[disabled]="plan.id == 1"
+					(click)="presentPrompt(plan.id)">
+				Comprar/Cambiar
+			</button>
+			
+		</ion-item>
+
+
+	</ion-list>
+
+</ion-content>

@@ -1,0 +1,41 @@
+<ion-header>
+	<ion-navbar color="primary">
+		<ion-buttons end>
+			<button ion-button
+					icon-only
+					(click)="viewCtrl.dismiss(false)">
+				<ion-icon name="close"></ion-icon>
+			</button>
+		</ion-buttons>
+		<ion-title>Login</ion-title>
+	</ion-navbar>
+
+</ion-header>
+<ion-content padding>
+		<div style="position: relative;">
+		  <div style="position: absolute; left: 10px; top: 140px; color: white;">{{_us.name}}</div>
+		</div>
+
+				
+
+					  <ion-item >
+					    <ion-label floating><strong>Identificación</strong></ion-label>
+					    <ion-input type="number" [(ngModel)]="identificacion"></ion-input>
+					  </ion-item>
+
+					  <ion-item>
+					    <ion-label  floating><strong>Contraseña</strong></ion-label>
+					    <ion-input  type="password" [(ngModel)]="contrasena"></ion-input>
+					  </ion-item>
+					&nbsp;
+					&nbsp;
+					<button ion-button
+							[disabled]="identificacion.length < 5 || contrasena.length <5"
+							block
+							round
+							(click)="ingresar()">
+						Ingresar
+					</button>
+
+	
+</ion-content>

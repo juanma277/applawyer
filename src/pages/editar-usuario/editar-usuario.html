@@ -1,0 +1,102 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+
+    <ion-title>{{user.nombres}} {{user.apellidos}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	
+
+	<ion-list>
+
+		<ion-input type="hidden" [(ngModel)]="id_user" value="{{user.id}}"></ion-input>
+
+		<ion-item>
+		    <ion-label fixed>Nombres</ion-label>
+		    <ion-input type="text" [(ngModel)]="nombres" value="{{user.nombres}}"></ion-input>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label fixed>Apellidos</ion-label>
+		    <ion-input type="text" [(ngModel)]="apellidos" value="{{user.apellidos}}"></ion-input>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label>Tipo Identificación</ion-label>
+		    <ion-select [(ngModel)]="tipo_identificacion">
+		      <ion-option value="CC">CC</ion-option>
+		      <ion-option value="CE">CE</ion-option>
+		      <ion-option value="TI">TI</ion-option>
+		    </ion-select>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label fixed>Identificación</ion-label>
+		    <ion-input type="text" [(ngModel)]="identificacion" value="{{user.identificacion}}"></ion-input>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label fixed>Teléfono</ion-label>
+		    <ion-input type="number" [(ngModel)]="telefono" value="{{user.telefono}}"></ion-input>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label fixed>Email</ion-label>
+		    <ion-input type="email" [(ngModel)]="email" value="{{user.email}}"></ion-input>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label fixed>Dirección</ion-label>
+		    <ion-input type="text" [(ngModel)]="direccion" value="{{user.direccion}}"></ion-input>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label>Genero</ion-label>
+		    <ion-select [(ngModel)]="genero">
+		      <ion-option value="Masculino">Masculino</ion-option>
+		      <ion-option value="Femenino">Femenino</ion-option>
+		    </ion-select>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label>Permisos</ion-label>
+		    <ion-select [(ngModel)]="rol">
+		      <ion-option value="ADMIN">Administrador</ion-option>
+		      <ion-option value="STANDAR">Estandar</ion-option>
+		    </ion-select>
+		</ion-item>
+
+		<ion-item>
+		  	<ion-label>Estado</ion-label>
+		  	<ion-toggle checked="true" [(ngModel)]="estado"></ion-toggle>
+		</ion-item>
+
+		<ion-item>
+		    <ion-badge item color="secondary" text-center>{{user.player_id}}</ion-badge>
+		</ion-item>
+
+		<button ion-button
+					block
+					icon-left
+					(click)="actualizarUsuario(id_user, nombres, apellidos, tipo_identificacion, identificacion, telefono, email, direccion, genero, rol, estado )">
+				<ion-icon name="refresh-circle"></ion-icon>
+				Actualizar
+		</button>
+
+		<button ion-button
+					block
+					color="danger"
+					icon-left
+					(click)="resetPassword(id_user)">
+				<ion-icon name="warning"></ion-icon>
+				Reset Password
+		</button>
+
+	</ion-list>
+
+</ion-content>

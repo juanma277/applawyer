@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+
+    <ion-title>Crear Juzgado</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-list>
+
+		<ion-item>
+		    <ion-label fixed>Nombre:</ion-label>
+		    <ion-input type="text" [(ngModel)]="nomJuzgado" required></ion-input>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label>Ciudad</ion-label>
+		    <ion-select [(ngModel)]="ciudad" required>
+		      <ion-option *ngFor="let ciudad of _ccp.ciudadesActivas" value="{{ciudad.id}}">{{ciudad.nombre}}</ion-option>
+		    </ion-select>
+		</ion-item>
+
+		<ion-item>
+		  	<ion-label>Estado</ion-label>
+		  	<ion-toggle checked="true" [(ngModel)]="estado"></ion-toggle>
+		</ion-item>
+
+		<button ion-button
+					block
+					icon-left
+					(click)="crearJuzgado(nomJuzgado, ciudad, estado)">
+				<ion-icon name="add"></ion-icon>
+				Crear
+		</button>
+
+	</ion-list>
+
+</ion-content>

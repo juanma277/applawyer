@@ -1,0 +1,48 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+  	<button ion-button menuToggle>
+		<ion-icon name="menu"></ion-icon>
+  	</button>
+    <ion-title>Usuarios</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-fab right bottom>
+	    <button ion-fab
+	    		[navPush]="crearUsuario">
+	    	<ion-icon name="add"></ion-icon>
+	    </button>
+	</ion-fab>
+
+	<ion-searchbar (ionInput)="buscarUsuarios($event)"></ion-searchbar>
+
+	<ion-list>
+		<ion-item *ngFor="let user of _cup.usuarios">
+
+			<ion-avatar item-start *ngIf="user.image">
+		      <img [src]="user.image | imagenPlan">
+		    </ion-avatar>
+
+			<ion-avatar item-start *ngIf="user.image == null">
+		      <img [src]="'default.png' | imagenPlan">
+		    </ion-avatar>
+				
+			<h3>{{user.nombres}} {{user.apellidos}}</h3>
+			<p>{{user.email}}</p>
+
+			<button ion-button 
+					clear 
+					item-right
+					[navPush]="editarUsuario"
+					[navParams] ="{user:user}">
+				Ver
+			</button>
+		</ion-item>
+	</ion-list>
+
+</ion-content>

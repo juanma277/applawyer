@@ -1,0 +1,37 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+
+    <ion-title>Crear Tipo Proceso</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	
+	<ion-list>
+
+		<ion-item>
+		    <ion-label fixed>Nombre:</ion-label>
+		    <ion-input type="text" [(ngModel)]="nomTipoProceso" required></ion-input>
+
+		</ion-item>
+
+		<ion-item>
+		  	<ion-label>Estado</ion-label>
+		  	<ion-toggle checked="true" [(ngModel)]="estado"></ion-toggle>
+		</ion-item>
+
+		<button ion-button
+					block
+					icon-left
+					(click)="crearTipo(nomTipoProceso, estado)">
+				<ion-icon name="add"></ion-icon>
+				Crear
+		</button>
+
+	</ion-list>
+
+</ion-content>

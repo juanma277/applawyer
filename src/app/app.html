@@ -1,0 +1,86 @@
+<ion-menu [content]="NAV">
+	<ion-content>
+
+		<div style="position: relative;">
+		  <div style="position: absolute; left: 10px; top: 140px; color: white;">{{_us.name}}</div>
+		</div>
+
+		<div style="position: relative;">
+			<div style="position: absolute; left: 5px; top: 60px"><img *ngIf="_us.userImage !=null" class="imgRedonda" [src]="_us.userImage | imagenPlan"></div>	  
+		</div>
+
+		<div id="imagen">
+			<img [src]="'wallpaper2.png' | imagenPlan">
+		</div>
+		
+		<ion-list>
+
+			<button ion-item 
+					(click)="goToHome()" 
+					menuClose>
+					<ion-icon item-left name="home"></ion-icon>
+					Inicio
+			</button>
+
+			<ng-container *ngIf="_us.token == null">
+
+				<button ion-item 
+					(click)="goToRegistro()" 
+					menuClose>
+					<ion-icon item-left name="person-add"></ion-icon>
+					Registrese
+				</button>
+
+				<button ion-item 
+					(click)="goToInicio()" 
+					menuClose>
+					<ion-icon item-left name="power"></ion-icon>
+					Iniciar Sesión
+				</button>
+
+			</ng-container>
+
+			<ng-container *ngIf="_us.rol == 'STANDAR' || _us.rol == 'ADMIN'">
+
+				<button ion-item *ngFor="let pageUs of pagesUsuario" (click)="goToPage(pageUs.Component)" menuClose>
+					<ion-icon item-left name="{{pageUs.icon}}"></ion-icon>
+					{{pageUs.titulo}}
+				</button>
+
+			</ng-container>
+
+			<ng-container *ngIf="_us.rol == 'ADMIN'">
+
+				 <ion-list-header>
+				    Administración
+				 </ion-list-header>
+
+				<button ion-item *ngFor="let pageAdm of pagesAdmin" (click)="goToPage(pageAdm.Component)" menuClose>
+					<ion-icon item-left name="{{pageAdm.icon}}"></ion-icon>
+					{{pageAdm.titulo}}
+				</button>
+
+
+				<ion-list-header>
+				    Servicios
+				 </ion-list-header>
+			
+				<button ion-item *ngFor="let pageAdmS of pagesAdminServices" (click)="goToPage(pageAdmS.Component)" menuClose>
+					<ion-icon item-left name="{{pageAdmS.icon}}"></ion-icon>
+					{{pageAdmS.titulo}}
+				</button>
+			</ng-container>
+
+			<button ion-item menuClose
+  				*ngIf="_us.activo ==1"
+  				(click)="cerrarSession()">
+  				<ion-icon item-left name="close"></ion-icon>
+			Salir
+  			</button>
+
+
+		</ion-list>	
+	</ion-content>
+</ion-menu>
+
+<ion-nav #NAV [root]="rootPage"></ion-nav>

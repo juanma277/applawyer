@@ -1,0 +1,85 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+
+    <ion-title>Crear Usuario</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-list>
+
+		<ion-item>
+		    <ion-label fixed>Nombres</ion-label>
+		    <ion-input type="text" [(ngModel)]="nombres"></ion-input>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label fixed>Apellidos</ion-label>
+		    <ion-input type="text" [(ngModel)]="apellidos"></ion-input>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label>Tipo Identificación</ion-label>
+		    <ion-select [(ngModel)]="tipo_identificacion">
+		      <ion-option value="CC">CC</ion-option>
+		      <ion-option value="CE">CE</ion-option>
+		      <ion-option value="TI">TI</ion-option>
+		    </ion-select>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label fixed>Identificación</ion-label>
+		    <ion-input type="text" [(ngModel)]="identificacion"></ion-input>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label fixed>Teléfono</ion-label>
+		    <ion-input type="number" [(ngModel)]="telefono"></ion-input>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label fixed>Email</ion-label>
+		    <ion-input type="email" [(ngModel)]="email"></ion-input>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label fixed>Dirección</ion-label>
+		    <ion-input type="text" [(ngModel)]="direccion"></ion-input>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label>Genero</ion-label>
+		    <ion-select [(ngModel)]="genero">
+		      <ion-option value="Masculino">Masculino</ion-option>
+		      <ion-option value="Femenino">Femenino</ion-option>
+		    </ion-select>
+		</ion-item>
+
+		<ion-item>
+		    <ion-label>Permisos</ion-label>
+		    <ion-select [(ngModel)]="rol">
+		      <ion-option value="ADMIN">Administrador</ion-option>
+		      <ion-option value="STANDAR">Estandar</ion-option>
+		    </ion-select>
+		</ion-item>
+
+		<ion-item>
+		  	<ion-label>Estado</ion-label>
+		  	<ion-toggle checked="true" [(ngModel)]="estado"></ion-toggle>
+		</ion-item>
+
+		<button ion-button
+					block
+					icon-left
+					(click)="crearUsuario(nombres, apellidos, tipo_identificacion, identificacion, telefono, email, direccion, genero, rol, estado)">
+				<ion-icon name="add"></ion-icon>
+				Crear
+		</button>
+
+	</ion-list>
+
+</ion-content>

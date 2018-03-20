@@ -1,0 +1,73 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+
+    <ion-title>Editar Plan</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	
+	<ion-list>
+
+			<ion-input type="hidden" [(ngModel)]="id_plan" value="{{plan.id}}"></ion-input>
+
+			<ion-item>
+			    <ion-label fixed>Nombre</ion-label>
+			    <ion-input type="text" [(ngModel)]="nomPlan" value="{{plan.nombre}}" ></ion-input>
+			</ion-item>
+
+			<ion-item>
+			    <ion-label fixed>Valor</ion-label>
+			    <ion-input type="number" [(ngModel)]="valor" value="{{plan.valor}}" ></ion-input>
+			</ion-item>
+
+			<ion-item>
+			    <ion-label fixed>Cantidad</ion-label>
+			    <ion-input type="number" [(ngModel)]="cantidad" value="{{plan.cantidad}}" ></ion-input>
+			</ion-item>
+
+
+			<ng-container *ngIf="imagenPrevia == null">
+				<ion-item *ngIf="plan.image">
+				    <img [src]="plan.image | imagenPlan">
+				</ion-item>
+			</ng-container>
+			
+			<ion-item *ngIf="imagenPrevia">
+			    <img [src]="imagenPrevia">
+			</ion-item>
+
+			<ion-item>
+			  	<ion-label>Estado</ion-label>
+			  	<ion-toggle checked="true" color="secondarys" [(ngModel)]="estado"></ion-toggle>
+			</ion-item>
+
+			<button ion-button 
+					block
+			    	(click)="seleccionarFoto()">
+			    	<ion-icon name="photos"></ion-icon>
+			    	&nbsp;Imagen
+			</button>
+
+			<button ion-button 
+					block
+			    	(click)="mostrarCamara()">
+			    	<ion-icon name="camera"></ion-icon>
+			    	&nbsp;Tomar Foto
+			</button>
+
+			<button ion-button
+					block
+					icon-left
+					(click)="actualizarPlan(nomPlan, valor, cantidad, estado, id_plan)">
+				<ion-icon name="refresh-circle"></ion-icon>
+				Actualizar
+			</button>
+
+	</ion-list>
+
+</ion-content>

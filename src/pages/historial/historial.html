@@ -1,0 +1,66 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+
+    <ion-title>{{proceso.radicado}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-card>
+
+	  <ion-card-header text-center>
+	    <strong>Datos del Proceso</strong>
+	  </ion-card-header>
+	  	
+	  <ion-list>
+	    <ion-item>
+		  <ion-badge color="dark">Despacho</ion-badge>
+		  <ion-badge item-end>{{proceso.juzgado}}</ion-badge>
+		</ion-item>
+
+	    <ion-item>
+		  <ion-badge color="dark">Tipo</ion-badge>
+		  <ion-badge item-end>{{proceso.tipo}}</ion-badge>
+		</ion-item>
+
+		<ion-item>
+		  <ion-badge color="dark">Demandante</ion-badge>
+		  <ion-badge item-end>{{proceso.demandante}}</ion-badge>
+		</ion-item>
+
+		<ion-item>
+		  <ion-badge color="dark">Demandando</ion-badge>
+		  <ion-badge item-end>{{proceso.demandado}}</ion-badge>
+		</ion-item>
+	  </ion-list>
+
+	</ion-card>
+
+
+	<ion-card *ngIf="_cpp.historial != null">
+
+	  <ion-card-header text-center>
+	    <strong>Actuaciones del Proceso</strong>
+	  </ion-card-header>
+	  	
+	  	<ion-grid>
+		  <ion-row>
+		    <ion-col col-4 text-center><strong>Fecha</strong></ion-col>
+		    <ion-col col-4 text-center><strong>Actuación</strong></ion-col>
+		    <ion-col col-4 text-center><strong>Anotación</strong></ion-col>
+		  </ion-row>
+
+		  <ion-row *ngFor="let item of _cpp.historial">
+		    <ion-col col-4 text-center>{{item.fecha}}</ion-col>
+		    <ion-col col-4 text-center>{{item.actuacion}}</ion-col>
+		    <ion-col col-4 text-center>{{item.anotacion}}</ion-col>
+		  </ion-row>
+		</ion-grid>
+	  
+	</ion-card>
+	
+</ion-content>

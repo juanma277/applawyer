@@ -1,0 +1,62 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+  	<button ion-button menuToggle>
+		<ion-icon name="menu"></ion-icon>
+  	</button>
+    <ion-title>Procesos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-item no-lines>
+	  <b>Procesos Registrados:</b>
+	  <ion-badge item-end>{{_cpp.cuentaProcesosAll}}</ion-badge>
+	</ion-item>
+
+	<ion-searchbar (ionInput)="buscarProceso($event)"></ion-searchbar>
+
+	<ion-card *ngFor="let proceso of _cpp.procesosAll">
+	  <ion-card-content>
+	    <ion-card-title>
+	      <strong>RAD:</strong> {{proceso.radicado}} 
+	      <h2>{{proceso.tipo}}</h2>
+	      <h2>{{proceso.ciudad}}</h2>
+	      </ion-card-title>
+	      	<ion-badge>Demandante</ion-badge>
+		    <ion-badge color="dark">{{proceso.demandante}}</ion-badge> <br>
+		    <ion-badge>Demandado</ion-badge>
+		    <ion-badge color="dark">{{proceso.demandado}}</ion-badge>
+	  </ion-card-content>
+
+	  <ion-row>
+	    <ion-col>
+	    	<ion-badge color="light">{{proceso.juzgado}}</ion-badge>
+	    </ion-col>
+
+	    <ion-col>
+	      	<ion-badge color="light">{{proceso.estadoProceso}}</ion-badge>
+	    </ion-col>
+
+	    <button ion-button color="danger" 
+		      		  	block
+		      		  [navPush]="editarProcesoPage"
+					  [navParams]="{proceso: proceso}">
+		      		EDITAR
+		</button>
+
+		<button ion-button color="secondary" 
+		      		  	block
+		      		  [navPush]="verHistorial"
+					  [navParams]="{proceso: proceso}">
+		      		VER HISTORIAL
+		</button>
+		 
+
+	  </ion-row>
+	</ion-card>
+
+</ion-content>

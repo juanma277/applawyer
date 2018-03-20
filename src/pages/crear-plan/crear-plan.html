@@ -1,0 +1,64 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+
+    <ion-title>Crear Plan</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	
+	<ion-list>
+
+			<ion-item>
+			    <ion-label fixed>Nombre</ion-label>
+			    <ion-input type="text" [(ngModel)]="nomPlan" ></ion-input>
+			</ion-item>
+
+			<ion-item>
+			    <ion-label fixed>Valor</ion-label>
+			    <ion-input type="number" [(ngModel)]="valor" ></ion-input>
+			</ion-item>
+
+			<ion-item>
+			    <ion-label fixed>Cantidad</ion-label>
+			    <ion-input type="number" [(ngModel)]="cantidad" ></ion-input>
+			</ion-item>
+
+			<ion-item *ngIf="imagenPreView">
+			    <img [src]="imagenPreView" >
+			</ion-item>
+
+			<ion-item>
+			  	<ion-label>Estado</ion-label>
+			  	<ion-toggle checked="true" [(ngModel)]="estado"></ion-toggle>
+			</ion-item>
+
+			<button ion-button 
+					block
+			    	(click)="seleccionarFoto()">
+			    	<ion-icon name="photos"></ion-icon>
+			    	&nbsp;Imagen
+			</button>
+
+			<button ion-button 
+					block
+			    	(click)="mostrarCamara()">
+			    	<ion-icon name="camera"></ion-icon>
+			    	&nbsp;Tomar Foto
+			</button>
+
+			<button ion-button
+						block
+						icon-left
+						(click)="crearPlan(nomPlan, valor, cantidad, estado)">
+					<ion-icon name="add"></ion-icon>
+					Crear
+			</button>
+
+	</ion-list>
+
+</ion-content>

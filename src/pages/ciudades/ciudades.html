@@ -1,0 +1,41 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+  	<button ion-button menuToggle>
+		<ion-icon name="menu"></ion-icon>
+  	</button>
+    <ion-title>Ciudades</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-fab right bottom>
+	    <button ion-fab
+	    		[navPush]="crearCiudad">
+	    	<ion-icon name="add"></ion-icon>
+	    </button>
+	</ion-fab>
+
+	<ion-searchbar (ionInput)="buscarCiudades($event)"></ion-searchbar>
+
+	<ion-list>
+	  <ion-item *ngFor="let ciudad of _ccc.ciudades">
+	    <ion-avatar item-start>
+	      <ion-icon name="arrow-forward"></ion-icon>
+	    </ion-avatar>
+	    <h2>{{ciudad.nombre}}</h2>
+	    <p>{{ciudad.estado}}</p>
+	    <button ion-button 
+					clear 
+					item-right
+					[navPush]="editarCiudad"
+					[navParams]="{ciudad: ciudad}">
+				Ver
+		</button>
+	  </ion-item>
+	</ion-list>
+	
+</ion-content>

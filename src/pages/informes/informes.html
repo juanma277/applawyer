@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-navbar color="primary">
+
+  	<button ion-button menuToggle icon-only>
+		<ion-icon name="menu"></ion-icon>
+  	</button>
+
+    <ion-title>
+      Informes
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content padding>
+
+	 <ion-list no-lines>
+	 	<ion-list-header>
+		    Informes de usuario
+		</ion-list-header>
+
+	    <button ion-item
+	    		[navPush]="reporJuzgadoPage"
+				[navParams]="{id: _up.id_usuario}">
+			<ion-icon name="book" item-left></ion-icon>
+			Procesos por Juzgado
+		</button>
+
+	    <button ion-item
+	    		[navPush]="reporTipoPage"
+				[navParams]="{id: _up.id_usuario}">
+			<ion-icon name="chatbubbles" item-left></ion-icon>
+			Procesos por Tipo
+		</button>
+
+	    <button ion-item
+	    		[navPush]="reporCiudadPage"
+				[navParams]="{id: _up.id_usuario}">
+			<ion-icon name="globe" item-left></ion-icon>
+			Procesos por Ciudad
+		</button>
+
+		<button ion-item
+	    		[navPush]="reporEstadoPage"
+				[navParams]="{id: _up.id_usuario}">
+			<ion-icon name="stats" item-left></ion-icon>
+			Procesos por Estado
+		</button>
+
+	</ion-list>
+
+	<ion-list no-lines *ngIf="_up.rol == 'ADMIN'">
+	 	<ion-list-header>
+		    Informes de Administración
+		</ion-list-header>
+
+	    <button ion-item
+	    		[navPush]="reporJuzgadoPage"
+				[navParams]="{id: _up.id_usuario}">
+			<ion-icon name="book" item-left></ion-icon>
+			Procesos por Juzgado
+		</button>
+
+	    <button ion-item
+	    		[navPush]="reporTipoPage"
+				[navParams]="{id: _up.id_usuario}">
+			<ion-icon name="chatbubbles" item-left></ion-icon>
+			Procesos por Tipo
+		</button>
+
+	    <button ion-item
+	    		[navPush]="reporCiudadPage"
+				[navParams]="{id: _up.id_usuario}">
+			<ion-icon name="globe" item-left></ion-icon>
+			Procesos por Ciudad
+		</button>
+
+		<button ion-item
+	    		[navPush]="reporEstadoPage"
+				[navParams]="{id: _up.id_usuario}">
+			<ion-icon name="stats" item-left></ion-icon>
+			Procesos por Estado
+		</button>
+
+		<button ion-item
+	    		[navPush]="reporEstadoPage"
+				[navParams]="{id: _up.id_usuario}">
+			<ion-icon name="contacts" item-left></ion-icon>
+			Usuarios Registrados
+		</button>
+
+		<button ion-item
+	    		[navPush]="reporEstadoPage"
+				[navParams]="{id: _up.id_usuario}">
+			<ion-icon name="notifications" item-left></ion-icon>
+			Notificaciones
+		</button>
+
+	</ion-list>
+     
+</ion-content>

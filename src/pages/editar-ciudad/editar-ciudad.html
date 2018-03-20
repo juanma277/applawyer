@@ -1,0 +1,41 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+
+    <ion-title>Editar Ciudad</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	
+
+	<ion-list>
+
+		<ion-item>
+		    <ion-label fixed>Nombre:</ion-label>
+		    <ion-input type="text" [(ngModel)]="nomCiudad" value="{{ciudad.nombre}}"></ion-input>
+
+		</ion-item>
+
+		    <ion-input type="hidden" [(ngModel)]="id_ciudad" value="{{ciudad.id}}"></ion-input>
+
+
+		<ion-item>
+		  	<ion-label>Estado</ion-label>
+		  	<ion-toggle checked="true" [(ngModel)]="estado"></ion-toggle>
+		</ion-item>
+
+		<button ion-button
+					block
+					icon-left
+					(click)="actualizarCiudad(nomCiudad, estado, id_ciudad)">
+				<ion-icon name="refresh-circle"></ion-icon>
+				Actualizar
+		</button>
+
+	</ion-list>
+
+</ion-content>
